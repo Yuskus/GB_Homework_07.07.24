@@ -7,7 +7,7 @@ namespace HomeworkGB7
     {
         static void Main(string[] args)
         {
-            string startPath = "D:\\";
+            string startPath = Path.GetPathRoot(Directory.GetCurrentDirectory())!;
             string extention = ".cs";
             string text = "return";
 
@@ -19,7 +19,7 @@ namespace HomeworkGB7
 
             var list = Search(startPath, extention);
 
-            Console.WriteLine("Список файлов подходящего расширения на диске D: ");
+            Console.WriteLine("Список файлов подходящего расширения на этом диске: ");
             Thread.Sleep(1000); //чтобы успеть прочитать консольный вывод
             Console.WriteLine(string.Join("\n", list));
             Console.WriteLine("Конец списка.");
