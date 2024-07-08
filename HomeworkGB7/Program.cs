@@ -44,7 +44,9 @@ namespace HomeworkGB7
                     if (line.Length != 0 && line.ToString().Contains(text, StringComparison.InvariantCultureIgnoreCase))
                     {
                         Console.WriteLine($"В файле по пути {path} найдена искомая строка:");
-                        Console.WriteLine(regex.Replace(line.ToString(), text.ToUpper()) + "\n");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(regex.Replace(line.ToString(), text.ToUpper()).Trim() + "\n");
+                        Console.ResetColor();
                     }
                     line.Length = 0;
                 }
@@ -78,7 +80,9 @@ namespace HomeworkGB7
             }
             catch (UnauthorizedAccessException ex)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Ошибка доступа к файлу, текст ошибки: {ex.Message}");
+                Console.ResetColor();
                 gotAccess = false;
             }
             return gotAccess;
