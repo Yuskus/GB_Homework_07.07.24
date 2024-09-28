@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace HomeworkGB7
@@ -7,14 +8,28 @@ namespace HomeworkGB7
     {
         static void Main(string[] args)
         {
-            string startPath = Path.GetPathRoot(Directory.GetCurrentDirectory())!;
-            string extention = ".cs";
-            string text = "return";
+            string startPath = "";
+            string? extention;
+            string? text;
 
-            if (args.Length == 2)
+            while (true)
             {
-                extention = args[0];
-                text = args[1];
+                Console.WriteLine("На каком диске производится поиск?\n" + 
+                              "Введите имя диска (в формате \"D\"), в верном регистре и без знака двоеточия:");
+                startPath = Console.ReadLine() + ":\\";
+
+                Console.WriteLine("Введите расширение (в формате \".cs\"):");
+                extention = Console.ReadLine();
+
+                Console.WriteLine("Введите искомый текст:");
+                text = Console.ReadLine();
+
+                if (startPath.Length > 2 && !string.IsNullOrEmpty(extention) && !string.IsNullOrEmpty(text))
+                {
+                    break;
+                }
+
+                Console.WriteLine("Некорректный ввод. Попробуйте снова.");
             }
 
             var list = Search(startPath, extention);
@@ -31,6 +46,8 @@ namespace HomeworkGB7
 
             Console.WriteLine("Нажмите любую клавишу для выхода.");
             Console.ReadKey(true);
+            Console.WriteLine("До свидания!");
+            Thread.Sleep(1000);
         }
         static void ReadUntil(string path, string text) //поиск подходящей строки в файле и её вывод на консоль
         {
