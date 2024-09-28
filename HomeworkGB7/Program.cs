@@ -8,15 +8,15 @@ namespace HomeworkGB7
     {
         static void Main(string[] args)
         {
-            string startPath = "";
+            string? startPath;
             string? extention;
             string? text;
 
             while (true)
             {
-                Console.WriteLine("На каком диске производится поиск?\n" + 
-                              "Введите имя диска (в формате \"D\"), в верном регистре и без знака двоеточия:");
-                startPath = Console.ReadLine() + ":\\";
+                Console.WriteLine("Где производится поиск?\n" + 
+                                  "Введите имя диска (в формате \"D\") или директории (в формате \"D:\\some\\path\"):");
+                startPath = Console.ReadLine();
 
                 Console.WriteLine("Введите расширение (в формате \".cs\"):");
                 extention = Console.ReadLine();
@@ -24,8 +24,9 @@ namespace HomeworkGB7
                 Console.WriteLine("Введите искомый текст:");
                 text = Console.ReadLine();
 
-                if (startPath.Length > 2 && !string.IsNullOrEmpty(extention) && !string.IsNullOrEmpty(text))
+                if (startPath?.Length > 0 && !string.IsNullOrEmpty(extention) && !string.IsNullOrEmpty(text))
                 {
+                    if (!startPath.Contains(":\\")) startPath += ":\\";
                     break;
                 }
 
